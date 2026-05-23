@@ -1,0 +1,25 @@
+{
+  "name": "Quotick — AWS Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localEnv:USERPROFILE}\\.aws,target=/root/.aws,type=bind,consistency=cached"
+  ],
+  "forwardPorts": [3000, 4000, 3002],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "amazonwebservices.aws-toolkit-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "node --version && aws --version && serverless --version"
+}

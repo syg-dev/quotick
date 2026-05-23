@@ -1,0 +1,45 @@
+# Dependencias
+node_modules/
+.npm/
+
+# Serverless Framework
+.serverless/
+.serverless_plugins/
+
+# Builds del frontend
+dist/
+build/
+.vite/
+
+# Credenciales y secretos
+.env
+.env.*
+*.pem
+*.key
+aws-credentials*
+credentials
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+*~
+
+# Archivos de trabajo locales
+*.drawio
+*.bkp
+$~*
+*.xlsx
+*.xlsm
+*.docx
+*.py
+infrastructure/vpc-resources.env
+docs/referencia/

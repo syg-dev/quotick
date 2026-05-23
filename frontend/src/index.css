@@ -1,0 +1,99 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #232F3E;
+  --primary-light: #3a4a5c;
+  --accent: #FF9900;
+  --accent-dark: #e88a00;
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --border: #e0e0e0;
+  --text: #232F3E;
+  --muted: #666;
+  --success: #2e7d32;
+  --danger: #c62828;
+  --sidebar-w: 220px;
+}
+
+body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+.sidebar { width: var(--sidebar-w); background: var(--primary); color: #fff; flex-shrink: 0; display: flex; flex-direction: column; }
+.sidebar-logo { padding: 18px 16px; font-size: 1.3rem; font-weight: 700; color: var(--accent); border-bottom: 1px solid var(--primary-light); letter-spacing: -0.5px; }
+.sidebar-logo span { font-size: 0.7rem; font-weight: 400; color: #aaa; display: block; margin-top: 2px; }
+.sidebar-nav { padding: 8px 0; flex: 1; }
+.nav-link { display: block; padding: 10px 16px; color: #ccc; text-decoration: none; border-left: 3px solid transparent; transition: all 0.15s; font-size: 0.9rem; }
+.nav-link:hover { background: var(--primary-light); color: #fff; }
+.nav-link.active { background: var(--primary-light); color: #fff; border-left-color: var(--accent); }
+.nav-section { padding: 12px 16px 4px; font-size: 0.7rem; text-transform: uppercase; color: #888; letter-spacing: 0.5px; }
+.main { flex: 1; padding: 24px; overflow-y: auto; max-width: 1100px; }
+
+/* ── Cards ── */
+.card { background: var(--card); border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+.card-title { font-size: 1rem; font-weight: 600; margin-bottom: 16px; color: var(--text); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+
+/* ── Forms ── */
+.form-row { display: grid; gap: 12px; margin-bottom: 12px; }
+.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.form-group { display: flex; flex-direction: column; gap: 4px; }
+label { font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+input, select, textarea { padding: 7px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.9rem; width: 100%; background: #fff; color: var(--text); }
+input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(255,153,0,.15); }
+input[type=number] { -moz-appearance: textfield; }
+
+/* ── Buttons ── */
+.btn { padding: 7px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: background 0.15s; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-secondary { background: #f0f0f0; color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: #e4e4e4; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #b71c1c; }
+.btn-sm { padding: 4px 10px; font-size: 0.78rem; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Tables ── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+th { font-size: 0.78rem; font-weight: 600; color: var(--muted); background: #fafafa; text-transform: uppercase; letter-spacing: 0.3px; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafafa; }
+
+/* ── Tags / badges ── */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; }
+.badge-green  { background: #e8f5e9; color: var(--success); }
+.badge-orange { background: #fff3e0; color: #e65100; }
+.badge-blue   { background: #e3f2fd; color: #1565c0; }
+.badge-gray   { background: #f5f5f5; color: #555; }
+.badge-red    { background: #ffebee; color: var(--danger); }
+
+/* ── Resultado cotizacion ── */
+.resultado { background: linear-gradient(135deg, #232F3E, #3a4a5c); color: #fff; border-radius: 8px; padding: 24px; margin-top: 16px; }
+.resultado h3 { color: var(--accent); margin-bottom: 16px; font-size: 1rem; }
+.resultado-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.res-item label { font-size: 0.72rem; color: #aaa; display: block; margin-bottom: 2px; }
+.res-item .val { font-size: 0.95rem; font-weight: 600; }
+.res-item .val.big { font-size: 1.4rem; color: var(--accent); }
+.resultado-divider { border: none; border-top: 1px solid rgba(255,255,255,.15); margin: 12px 0; }
+.precio-box { background: rgba(255,153,0,.15); border: 1px solid rgba(255,153,0,.3); border-radius: 6px; padding: 14px 20px; text-align: center; }
+.precio-box .label { font-size: 0.8rem; color: #aaa; margin-bottom: 4px; }
+.precio-box .precio { font-size: 2rem; font-weight: 700; color: var(--accent); }
+
+/* ── Misc ── */
+.page-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
+.empty { text-align: center; color: var(--muted); padding: 32px; font-size: 0.9rem; }
+.error-msg { background: #ffebee; color: var(--danger); padding: 10px 14px; border-radius: 4px; margin-bottom: 12px; font-size: 0.85rem; }
+.success-msg { background: #e8f5e9; color: var(--success); padding: 10px 14px; border-radius: 4px; margin-bottom: 12px; font-size: 0.85rem; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.flex-gap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.items-table td, .items-table th { padding: 6px 8px; }
+.check-list { display: flex; flex-direction: column; gap: 8px; }
+.check-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; transition: background 0.1s; }
+.check-item:hover { background: #fafafa; }
+.check-item input[type=checkbox] { width: auto; margin-top: 2px; accent-color: var(--accent); }
+.check-item .info .name { font-weight: 500; font-size: 0.88rem; }
+.check-item .info .desc { font-size: 0.78rem; color: var(--muted); }

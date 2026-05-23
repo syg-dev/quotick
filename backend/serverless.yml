@@ -1,0 +1,246 @@
+service: quotick-backend
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  iam:
+    role: arn:aws:iam::380607194543:role/Quotick-LambdaRole
+  environment:
+    TABLE_PARAMETROS: quotick-parametros
+    TABLE_SERVICIOS: quotick-servicios
+    TABLE_HERRAMIENTAS: quotick-herramientas
+    TABLE_FACTORES_RIESGO: quotick-factores-riesgo
+    TABLE_CLIENTES: quotick-clientes
+    TABLE_COTIZACIONES: quotick-cotizaciones
+    EC2_PDF_URL: http://54.236.139.181:3001
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - OPTIONS
+
+package:
+  patterns:
+    - '!.git/**'
+    - '!.serverless/**'
+    - '!node_modules/**'
+    - 'src/**'
+
+functions:
+
+  # Parametros globales
+  parametrosGet:
+    handler: src/parametros/handler.get
+    description: Devuelve la configuracion activa
+    events:
+      - httpApi:
+          path: /parametros
+          method: GET
+
+  parametrosCreate:
+    handler: src/parametros/handler.create
+    description: Crea o reemplaza la configuracion global
+    events:
+      - httpApi:
+          path: /parametros
+          method: POST
+
+  parametrosUpdate:
+    handler: src/parametros/handler.update
+    description: Actualiza campos de la configuracion
+    events:
+      - httpApi:
+          path: /parametros/{id}
+          method: PUT
+
+  # Servicios
+  serviciosList:
+    handler: src/servicios/handler.list
+    description: Lista todos los roles del tarifario
+    events:
+      - httpApi:
+          path: /servicios
+          method: GET
+
+  serviciosCreate:
+    handler: src/servicios/handler.create
+    description: Agrega un rol al tarifario
+    events:
+      - httpApi:
+          path: /servicios
+          method: POST
+
+  serviciosUpdate:
+    handler: src/servicios/handler.update
+    description: Actualiza un rol del tarifario
+    events:
+      - httpApi:
+          path: /servicios/{id}
+          method: PUT
+
+  serviciosDelete:
+    handler: src/servicios/handler.remove
+    description: Elimina un rol del tarifario
+    events:
+      - httpApi:
+          path: /servicios/{id}
+          method: DELETE
+
+  # Herramientas
+  herramientasList:
+    handler: src/herramientas/handler.list
+    description: Lista las herramientas del catalogo
+    events:
+      - httpApi:
+          path: /herramientas
+          method: GET
+
+  herramientasCreate:
+    handler: src/herramientas/handler.create
+    description: Agrega una herramienta al catalogo
+    events:
+      - httpApi:
+          path: /herramientas
+          method: POST
+
+  herramientasUpdate:
+    handler: src/herramientas/handler.update
+    description: Actualiza una herramienta
+    events:
+      - httpApi:
+          path: /herramientas/{id}
+          method: PUT
+
+  herramientasDelete:
+    handler: src/herramientas/handler.remove
+    description: Elimina una herramienta
+    events:
+      - httpApi:
+          path: /herramientas/{id}
+          method: DELETE
+
+  # Factores de riesgo
+  factoresList:
+    handler: src/factores-riesgo/handler.list
+    description: Lista los factores de riesgo configurados
+    events:
+      - httpApi:
+          path: /factores-riesgo
+          method: GET
+
+  factoresCreate:
+    handler: src/factores-riesgo/handler.create
+    description: Agrega un factor de riesgo
+    events:
+      - httpApi:
+          path: /factores-riesgo
+          method: POST
+
+  factoresUpdate:
+    handler: src/factores-riesgo/handler.update
+    description: Actualiza un factor de riesgo
+    events:
+      - httpApi:
+          path: /factores-riesgo/{id}
+          method: PUT
+
+  factoresDelete:
+    handler: src/factores-riesgo/handler.remove
+    description: Elimina un factor de riesgo
+    events:
+      - httpApi:
+          path: /factores-riesgo/{id}
+          method: DELETE
+
+  # Clientes
+  clientesList:
+    handler: src/clientes/handler.list
+    description: Lista todos los clientes
+    events:
+      - httpApi:
+          path: /clientes
+          method: GET
+
+  clientesCreate:
+    handler: src/clientes/handler.create
+    description: Registra un nuevo cliente
+    events:
+      - httpApi:
+          path: /clientes
+          method: POST
+
+  clientesGet:
+    handler: src/clientes/handler.get
+    description: Obtiene un cliente por ID
+    events:
+      - httpApi:
+          path: /clientes/{id}
+          method: GET
+
+  clientesUpdate:
+    handler: src/clientes/handler.update
+    description: Actualiza datos de un cliente
+    events:
+      - httpApi:
+          path: /clientes/{id}
+          method: PUT
+
+  clientesDelete:
+    handler: src/clientes/handler.remove
+    description: Elimina un cliente
+    events:
+      - httpApi:
+          path: /clientes/{id}
+          method: DELETE
+
+  # Cotizaciones
+  cotizacionesList:
+    handler: src/cotizaciones/handler.list
+    description: Lista todas las cotizaciones
+    events:
+      - httpApi:
+          path: /cotizaciones
+          method: GET
+
+  cotizacionesCreate:
+    handler: src/cotizaciones/handler.create
+    description: Crea una cotizacion con calculo completo de precio
+    events:
+      - httpApi:
+          path: /cotizaciones
+          method: POST
+
+  cotizacionesGet:
+    handler: src/cotizaciones/handler.get
+    description: Obtiene una cotizacion por ID
+    events:
+      - httpApi:
+          path: /cotizaciones/{id}
+          method: GET
+
+  cotizacionesUpdateEstado:
+    handler: src/cotizaciones/handler.updateEstado
+    description: Actualiza el estado de una cotizacion
+    events:
+      - httpApi:
+          path: /cotizaciones/{id}/estado
+          method: PATCH
+
+  cotizacionesGeneratePdf:
+    handler: src/cotizaciones/handlerPdf.generatePdf
+    description: Genera PDF de una cotizacion via EC2 + Puppeteer
+    timeout: 30
+    events:
+      - httpApi:
+          path: /cotizaciones/{id}/pdf
+          method: GET

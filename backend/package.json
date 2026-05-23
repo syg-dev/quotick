@@ -1,0 +1,9 @@
+{
+  "name": "quotick-backend",
+  "version": "1.0.0",
+  "description": "Backend serverless para Quotick — cotizador de software",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,14 @@
+# Normalizacion de saltos de linea
+* text=auto
+
+# Scripts shell SIEMPRE con LF (se ejecutan en Linux dentro del contenedor;
+# con CRLF fallarian con errores tipo "\r: command not found")
+*.sh text eol=lf
+*.env text eol=lf
+
+# Archivos binarios (no normalizar)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
