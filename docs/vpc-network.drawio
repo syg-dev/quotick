@@ -1,0 +1,85 @@
+<mxfile host="65bd71144e">
+    <diagram id="vpcnetwork" name="Red VPC Quotick">
+        <mxGraphModel dx="638" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Diagrama de Red — VPC Quotick" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="20" width="500" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Internet" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;fontStyle=1;startSize=25;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="100" width="140" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Usuario&#xa;(Navegador)" style="shape=mxgraph.aws4.user;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="10" vertex="1">
+                    <mxGeometry x="40" y="40" width="50" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="VPC — quotick-vpc  |  CIDR: 10.0.0.0/16" style="swimlane;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;fontSize=11;startSize=30;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="70" width="880" height="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Internet Gateway&#xa;quotick-igw" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.internet_gateway;fillColor=#8C4FFF;strokeColor=#ffffff;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="20" vertex="1">
+                    <mxGeometry x="60" y="130" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Route Table&#xa;quotick-rt-public" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9c27b0;" parent="20" vertex="1">
+                    <mxGeometry x="300" y="50" width="180" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="10.0.0.0/16 → local&#xa;0.0.0.0/0 → igw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="20" vertex="1">
+                    <mxGeometry x="510" y="50" width="160" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Subred Publica — quotick-public-subnet  |  CIDR: 10.0.1.0/24  |  AZ: us-east-1a" style="swimlane;fillColor=#f1f8e9;strokeColor=#7cb342;fontStyle=1;fontSize=10;startSize=25;" parent="20" vertex="1">
+                    <mxGeometry x="30" y="230" width="560" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Security Group — quotick-sg" style="swimlane;fillColor=#fff9c4;strokeColor=#f9a825;fontStyle=1;fontSize=10;startSize=25;" parent="30" vertex="1">
+                    <mxGeometry x="20" y="35" width="340" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Reglas Inbound" style="text;html=1;fontStyle=1;fontSize=10;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="30" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="SSH  |  TCP 22  |  0.0.0.0/0" style="rounded=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=9;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="55" width="210" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="HTTP  |  TCP 80  |  0.0.0.0/0" style="rounded=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=9;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="85" width="210" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="HTTPS  |  TCP 443  |  0.0.0.0/0" style="rounded=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=9;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="115" width="210" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="Reglas Outbound" style="text;html=1;fontStyle=1;fontSize=10;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="148" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="Todo  |  All  |  0.0.0.0/0" style="rounded=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=9;align=left;" parent="31" vertex="1">
+                    <mxGeometry x="10" y="172" width="210" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="EC2 t3.micro&#xa;quotick-ec2&#xa;STOPPED" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;fillColor=#E7571A;strokeColor=#ffffff;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="30" vertex="1">
+                    <mxGeometry x="420" y="90" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Servicios Serverless&#xa;(gestionados por AWS)" style="swimlane;fillColor=#e8eaf6;strokeColor=#7e57c2;fontStyle=1;fontSize=10;startSize=40;" parent="20" vertex="1">
+                    <mxGeometry x="650" y="200" width="180" height="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="API Gateway" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;fillColor=#8C4FFF;strokeColor=#ffffff;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="40" vertex="1">
+                    <mxGeometry x="65" y="50" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="Lambda" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;fillColor=#E7571A;strokeColor=#ffffff;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="40" vertex="1">
+                    <mxGeometry x="65" y="140" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="DynamoDB" style="shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;fillColor=#1A73E8;strokeColor=#ffffff;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="40" vertex="1">
+                    <mxGeometry x="65" y="230" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;" parent="40" source="41" target="42" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" style="edgeStyle=orthogonalEdgeStyle;" parent="40" source="42" target="43" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="Asociada" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" parent="20" source="21" target="22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="Trafico HTTP/S" style="edgeStyle=orthogonalEdgeStyle;" parent="20" source="21" target="40" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;" parent="1" source="11" target="21" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
