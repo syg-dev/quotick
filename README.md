@@ -6,6 +6,8 @@ Permite registrar clientes, definir un tarifario de roles, cargar herramientas y
 
 **App:** https://dymawbi4thhpo.cloudfront.net
 
+**Video:** https://drive.google.com/file/d/1qc5inppfJqrP7G0bVZScMdJkzJQUwoXZ/view?usp=sharing
+
 ---
 
 ## Stack
